@@ -13,7 +13,7 @@ public class Match {
 
   public static void main(String[] args) {
     try {
-      BufferedReader br = new BufferedReader(new FileReader(new File("src/JosephusProblem.java")));
+      BufferedReader br = new BufferedReader(new FileReader(new File("./JosephusProblem.java")));
       Match s = new Match();
 
       String line;
