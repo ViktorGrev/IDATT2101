@@ -9,7 +9,6 @@ public class JosephusProblem {
         Node pointer1 = enkellenke.hode;
         Node pointer2 = enkellenke.hode;
 
-        //as long as the node after the current, is not the same as the current
         while(pointer1.neste != pointer1)
         {
             int count = 1;
@@ -20,7 +19,6 @@ public class JosephusProblem {
                 count++;
             }
 
-            //removing node
             pointer2.neste = pointer1.neste;
             pointer1 = pointer2.neste;
         }
@@ -42,7 +40,7 @@ public class JosephusProblem {
 
         System.out.println("Interval constant: " + interval);
         System.out.println("Number of people in the circle: " + soldiers);
-        System.out.println ("Last person left standing " + "(Josephus Position) is " +
+        System.out.println ("Last soldier standing " + "(Josephus Position) is " +
             findLastPersonStanding(interval,soldiers).element);
         System.out.println("Runtime pr round: " + time + " ms");
         System.out.println();
@@ -74,6 +72,7 @@ class Enkellenke {
 class Main {
     public static void main(String[] args) {
         JosephusProblem.runTime(4,10);
-        //findPosition(3,40);
+        JosephusProblem.runTime(3,40);
+        JosephusProblem.runTime(5,100000);
     }
 }
