@@ -1,6 +1,6 @@
 public class JosephusProblem {
 
-    static int findLastPersonStanding(int interval, int soldiers) {
+    static Node findLastPersonStanding(int interval, int soldiers) {
         Enkellenke enkellenke = new Enkellenke();
         for(int i=1; i<soldiers+1;i++){
             enkellenke.settlnnNode(i);
@@ -24,7 +24,7 @@ public class JosephusProblem {
             pointer2.neste = pointer1.neste;
             pointer1 = pointer2.neste;
         }
-        return pointer1.element;
+        return pointer1;
     }
 
     static void runTime(int interval, int soldiers) {
@@ -43,7 +43,7 @@ public class JosephusProblem {
         System.out.println("Interval constant: " + interval);
         System.out.println("Number of people in the circle: " + soldiers);
         System.out.println ("Last person left standing " + "(Josephus Position) is " +
-            findLastPersonStanding(interval,soldiers));
+            findLastPersonStanding(interval,soldiers).element);
         System.out.println("Runtime pr round: " + time + " ms");
         System.out.println();
     }
