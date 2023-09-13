@@ -1,8 +1,8 @@
 public class JosephusProblem {
 
-    static int findPosition(int intervallConstant, int numberOfPeople) {
+    static int findLastPersonStanding(int interval, int soldiers) {
         Enkellenke enkellenke = new Enkellenke();
-        for(int i=1; i<numberOfPeople+1;i++){
+        for(int i=1; i<soldiers+1;i++){
             enkellenke.settlnnNode(i);
         }
 
@@ -13,7 +13,7 @@ public class JosephusProblem {
         while(ptr1.neste != ptr1)
         {
             int count = 1;
-            while(count != intervallConstant)
+            while(count != interval)
             {
                 ptr2 = ptr1;
                 ptr1 = ptr1.neste;
@@ -33,7 +33,7 @@ public class JosephusProblem {
         long endTime;
 
         do {
-            findPosition(intervalConstant, numberOfPeople);
+            findLastPersonStanding(intervalConstant, numberOfPeople);
             endTime = System.currentTimeMillis();
             rounds++;
         } while (endTime - startTime < 1000);
@@ -43,7 +43,7 @@ public class JosephusProblem {
         System.out.println("Interval constant: " + intervalConstant);
         System.out.println("Number of people in the circle: " + numberOfPeople);
         System.out.println ("Last person left standing " + "(Josephus Position) is " +
-            findPosition(intervalConstant,numberOfPeople));
+            findLastPersonStanding(intervalConstant,numberOfPeople));
         System.out.println("Runtime pr round: " + time + " ms");
         System.out.println();
     }
