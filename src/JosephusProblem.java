@@ -47,6 +47,11 @@ public class JosephusProblem {
         System.out.println("Runtime pr round: " + time + " ms");
         System.out.println();
     }
+
+    public static void main(String[] args) {
+        runTime(4,10);
+        //findPosition(3,40);
+    }
 }
 
 class Node {
@@ -68,12 +73,5 @@ class Enkellenke {
         } else hode = newNode;
         hale = newNode;
         hale.neste = hode;
-    }
-}
-
-class main {
-    public static void main(String[] args) {
-        JosephusProblem.runTime(4,10);
-        //findPosition(3,40);
     }
 }
