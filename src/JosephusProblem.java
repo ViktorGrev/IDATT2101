@@ -50,7 +50,6 @@ public class JosephusProblem {
 
     public static void main(String[] args) {
         runTime(4,10);
-        //findPosition(3,40);
     }
 }
 
