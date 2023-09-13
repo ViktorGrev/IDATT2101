@@ -27,7 +27,7 @@ public class Tre {
 
   }
 
-  //inorden
+  //inordentraversering
   private double sumrek(TreNode n) {
     if (n.left == null && n.right == null) return (double) n.element;
     return operations(n.element, sumrek(n.left), sumrek(n.right));
@@ -51,19 +51,19 @@ public class Tre {
   }
 
   public static void main(String[] args) {
-    TreNode nr4 = new TreNode(4.0, null, null);
-    TreNode nr2 = new TreNode(2.0, null, null);
-    TreNode plus = new TreNode("+", nr2, nr4);
-    TreNode nr3 = new TreNode(3.0, null, null);
-    TreNode gangev = new TreNode("*", nr3, plus);
+    TreNode node2l = new TreNode(2.0, null, null);
+    TreNode node4 = new TreNode(4.0, null, null);
+    TreNode plusOperator = new TreNode("+", node2l, node4);
+    TreNode node3 = new TreNode(3.0, null, null);
+    TreNode multiplyLeftSide = new TreNode("*", node3, plusOperator);
 
-    TreNode nr2hv = new TreNode(2.0,null,null);
-    TreNode nr2hh = new TreNode(2.0,null,null);
-    TreNode gangeh = new TreNode("*",nr2hv,nr2hh);
-    TreNode nr7 = new TreNode(7.0,null,null);
-    TreNode minus = new TreNode("-",nr7,gangeh);
+    TreNode node2rl = new TreNode(2.0,null,null);
+    TreNode node2rr = new TreNode(2.0,null,null);
+    TreNode multiplyRightSide = new TreNode("*",node2rl,node2rr);
+    TreNode node7 = new TreNode(7.0,null,null);
+    TreNode minus = new TreNode("-",node7,multiplyRightSide);
 
-    TreNode rot = new TreNode("/",gangev,minus);
+    TreNode rot = new TreNode("/", multiplyLeftSide,minus);
 
     Tre uttrykstre = new Tre(rot);
     System.out.println(uttrykstre.sum());
