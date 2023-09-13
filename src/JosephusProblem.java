@@ -6,44 +6,44 @@ public class JosephusProblem {
             enkellenke.settlnnNode(i);
         }
 
-        Node ptr1 = enkellenke.hode;
-        Node ptr2 = enkellenke.hode;
+        Node pointer1 = enkellenke.hode;
+        Node pointer2 = enkellenke.hode;
 
         //as long as the node after the current, is not the same as the current
-        while(ptr1.neste != ptr1)
+        while(pointer1.neste != pointer1)
         {
             int count = 1;
             while(count != interval)
             {
-                ptr2 = ptr1;
-                ptr1 = ptr1.neste;
+                pointer2 = pointer1;
+                pointer1 = pointer1.neste;
                 count++;
             }
 
             //removing node
-            ptr2.neste = ptr1.neste;
-            ptr1 = ptr2.neste;
+            pointer2.neste = pointer1.neste;
+            pointer1 = pointer2.neste;
         }
-        return ptr1.element;
+        return pointer1.element;
     }
 
-    static void runTime(int intervalConstant, int numberOfPeople) {
+    static void runTime(int interval, int soldiers) {
         int rounds = 0;
         long startTime = System.currentTimeMillis();
         long endTime;
 
         do {
-            findLastPersonStanding(intervalConstant, numberOfPeople);
+            findLastPersonStanding(interval, soldiers);
             endTime = System.currentTimeMillis();
             rounds++;
         } while (endTime - startTime < 1000);
 
         double time = (double)(endTime-startTime) / rounds;
 
-        System.out.println("Interval constant: " + intervalConstant);
-        System.out.println("Number of people in the circle: " + numberOfPeople);
+        System.out.println("Interval constant: " + interval);
+        System.out.println("Number of people in the circle: " + soldiers);
         System.out.println ("Last person left standing " + "(Josephus Position) is " +
-            findLastPersonStanding(intervalConstant,numberOfPeople));
+            findLastPersonStanding(interval,soldiers));
         System.out.println("Runtime pr round: " + time + " ms");
         System.out.println();
     }
