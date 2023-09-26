@@ -1,3 +1,5 @@
+package oppgave4;
+
 public class Tre {
   TreNode rot;
 
