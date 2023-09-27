@@ -1,3 +1,5 @@
+package oppgave4;
+
 public class JosephusProblem {
 
     static Node findLastPersonStanding(int interval, int soldiers) {
