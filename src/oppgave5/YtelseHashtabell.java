@@ -160,5 +160,6 @@ public class YtelseHashtabell {
 
     System.out.println("Collisions: " + table.getCollisions());
     System.out.println("Time taken: " + elapsedTime + " milliseconds");
+    System.out.println(table.search(55));
   }
 }
