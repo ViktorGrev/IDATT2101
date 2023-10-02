@@ -10,12 +10,12 @@ class Hashtabell {
     private final int size;
     Node[] table;
     int collisions;
-    private int itemCount;
+    int amountOfPeople;
 
     public Hashtabell(int size){
         this.size = size;
         this.table = new Node[size];
-        this.itemCount = 0;
+        this.amountOfPeople = 0;
     }
 
     public int divhash(int k){
@@ -28,10 +28,9 @@ class Hashtabell {
             newNode.next = table[h];
             table[h].next = null;
             collisions++;
-            itemCount--;
         }
         table[h] = newNode;
-        itemCount++;
+        amountOfPeople++;
     }
 
     public boolean find(String name){
@@ -70,8 +69,8 @@ class Hashtabell {
         return size;
     }
 
-    public int getItemCount(){
-        return itemCount;
+    public int getAmountOfPeople() {
+        return amountOfPeople;
     }
 }
 
@@ -89,7 +88,7 @@ class Node {
 
 class Main {
     public static void main(String[] args) {
-        int size = 101;
+        int size = 140;
         Hashtabell ht = new Hashtabell(size);
         try {
             URL url = new URL("https://www.idi.ntnu.no/emner/idatt2101/hash/navn.txt");
@@ -104,7 +103,7 @@ class Main {
                 quantityPersons++;
             }
             System.out.println("Antall kollisjoner: " + ht.getCollisions());
-            System.out.println("Lastfaktor: " + ((double)ht.getItemCount() / size));
+            System.out.println("Lastfaktor: " + ((double)ht.getAmountOfPeople() / ht.getSize()));
             System.out.println("Antall kollisjoner per person: " + (ht.getCollisions()/(double)quantityPersons));
             //Testing the find method to with our own names
             System.out.println(ht.find("Viktor Gunnar Grevskott"));
