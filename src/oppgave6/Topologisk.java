@@ -3,6 +3,9 @@ package oppgave6;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.StringTokenizer;
 
 public class Topologisk {
@@ -74,10 +77,31 @@ class Kant {
 class Main {
     public static void main(String[] args) {
         Topologisk topologisk = new Topologisk();
+        Topologisk topologisk1 = new Topologisk();
+        Topologisk topologisk2 = new Topologisk();
         try {
+
+            System.out.println("/////////////textFile.txt////////////////");
+
             BufferedReader br1 = new BufferedReader(new FileReader("src/oppgave6/textFile.txt"));
             topologisk.ny_ugraf(br1);
             topologisk.topologisort();
+
+            System.out.println("/////////////ø6g5////////////////");
+
+            URL url = new URL("https://www.idi.ntnu.no/emner/idatt2101/uv-graf/ø6g5");
+            URLConnection connection = url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            topologisk1.ny_ugraf(reader);
+            topologisk1.topologisort();
+
+            System.out.println("/////////////ø6g7////////////////");
+
+            URL url1 = new URL("https://www.idi.ntnu.no/emner/idatt2101/uv-graf/ø6g7");
+            URLConnection connection1 = url1.openConnection();
+            BufferedReader reader1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
+            topologisk2.ny_ugraf(reader1);
+            topologisk2.topologisort();
         } catch (Exception e) {
             e.printStackTrace();
         }

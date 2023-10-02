@@ -3,6 +3,9 @@ package oppgave6;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayDeque;
 import java.util.StringTokenizer;
 
@@ -98,11 +101,20 @@ class Kant2 {
 class Main1 {
     public static void main(String[] args) {
         BFS bfs = new BFS();
+        BFS bfs1 = new BFS();
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/oppgave6/textFile.txt"));
             bfs.ny_ugraf(br);
             bfs.bfs(bfs.node[5]);
             bfs.printBFSResults();
+
+            URL url = new URL("https://www.idi.ntnu.no/emner/idatt2101/uv-graf/ø6g1");
+            URLConnection connection = url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            bfs1.ny_ugraf(reader);
+            bfs1.bfs(bfs1.node[5]);
+            bfs1.printBFSResults();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
