@@ -1,9 +1,5 @@
 package oppgave6;
 
-import viktor.Kant;
-import viktor.Node;
-import viktor.Topologisk;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
