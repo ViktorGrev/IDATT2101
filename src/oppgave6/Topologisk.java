@@ -75,7 +75,7 @@ class Main {
     public static void main(String[] args) {
         Topologisk topologisk = new Topologisk();
         try {
-            BufferedReader br1 = new BufferedReader(new FileReader("C:\\IntelliJ\\testProsjekter\\IDATT2101_Gruppe\\out\\production\\IDATT2101_Gruppe\\viktor\\txtFiles\\nodes.txt"));
+            BufferedReader br1 = new BufferedReader(new FileReader("src/oppgave6/textFile.txt"));
             topologisk.ny_ugraf(br1);
             topologisk.topologisort();
         } catch (Exception e) {
