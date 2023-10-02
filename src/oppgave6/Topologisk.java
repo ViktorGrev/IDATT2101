@@ -76,19 +76,11 @@ class Kant {
 
 class Main {
     public static void main(String[] args) {
-        Topologisk topologisk = new Topologisk();
         Topologisk topologisk1 = new Topologisk();
         Topologisk topologisk2 = new Topologisk();
         try {
-
-            System.out.println("/////////////textFile.txt////////////////");
-
-            BufferedReader br1 = new BufferedReader(new FileReader("src/oppgave6/textFile.txt"));
-            topologisk.ny_ugraf(br1);
-            topologisk.topologisort();
-
             System.out.println("/////////////ø6g5////////////////");
-
+            
             URL url = new URL("https://www.idi.ntnu.no/emner/idatt2101/uv-graf/ø6g5");
             URLConnection connection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));

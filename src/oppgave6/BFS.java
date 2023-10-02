@@ -100,14 +100,8 @@ class Kant2 {
 
 class Main1 {
     public static void main(String[] args) {
-        BFS bfs = new BFS();
         BFS bfs1 = new BFS();
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/oppgave6/textFile.txt"));
-            bfs.ny_ugraf(br);
-            bfs.bfs(bfs.node[5]);
-            bfs.printBFSResults();
-
             URL url = new URL("https://www.idi.ntnu.no/emner/idatt2101/uv-graf/ø6g1");
             URLConnection connection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
