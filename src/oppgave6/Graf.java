@@ -77,7 +77,7 @@ class Graf {
   // ...
   public static void main(String args[]) {
     int numNodes = 0;
-    try (BufferedReader br = new BufferedReader(new FileReader("/Users/victorkaste/IdeaProjects/AlgDat Gruppearbeid/IDATT2101_Gruppe/src/oppgave6/textFile.txt"))) {
+    try (BufferedReader br = new BufferedReader(new FileReader("src/oppgave6/textFile.txt"))) {
       String[] edgeInfo;
       String line;
       if ((line = br.readLine()) != null) {
@@ -90,7 +90,7 @@ class Graf {
 
     Graf graf = new Graf(numNodes); // Initialize Graf with the correct number of nodes
 
-    try (BufferedReader br = new BufferedReader(new FileReader("/Users/victorkaste/IdeaProjects/AlgDat Gruppearbeid/IDATT2101_Gruppe/src/oppgave6/textFile.txt"))) {
+    try (BufferedReader br = new BufferedReader(new FileReader("src/oppgave6/textFile.txt"))) {
       String[] edgeInfo;
       String line;
       boolean firstLine = true; // Skip the first line which contains node and edge counts
