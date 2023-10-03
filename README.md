@@ -6,10 +6,10 @@ Welcome to the **IDATT2101 Algoritmer og Datastrukturer** (Algorithms and Data S
 
 ## Collaborators
 
-- Viktor
-- Victor
-- Melissa
-- Julia
+- [Viktor Grevskott](https://github.com/ViktorGrev)
+- [Viktor Kaste](https://github.com/Emperooo)
+- [Melissa Visnjic](https://github.com/Melo1meli12345)
+- [Julia Vik](https://github.com/juliavikr)
 
 ## Repository Structure
 
