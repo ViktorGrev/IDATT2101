@@ -44,6 +44,6 @@ If you are interested in running or reviewing our code, here are some general st
 1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/IDATT2101-Group-Project.git
+   git clone https://github.com/ViktorGrev/IDATT2101_Gruppe.git
 
 
