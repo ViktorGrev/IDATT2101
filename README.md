@@ -15,7 +15,8 @@ Welcome to the **IDATT2101 Algoritmer og Datastrukturer** (Algorithms and Data S
 
 The repository is organized into different directories, each representing a specific assignment or task from the IDATT2101 course. Here is a brief overview of the directory structure:
 
-1. **Assignment1**: This directory contains all the files related to Assignment 1, including the source code, documentation, and any additional resources.
+1. **Assignment1**: [aksjeopg.pdf](https://github.com/ViktorGrev/IDATT2101_Gruppe/files/13061261/aksjeopg.pdf)
+
 
 2. **Assignment2**: Similarly, this directory contains all the files for Assignment 2, including code, documentation, and resources.
 
