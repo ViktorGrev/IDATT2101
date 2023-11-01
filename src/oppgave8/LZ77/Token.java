@@ -40,7 +40,6 @@ public class Token {
     }
 
     @Override
-
     public boolean equals(Object obj) {
         Token otherToken = (Token) obj;
         if (otherToken.getLength() != length

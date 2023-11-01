@@ -38,10 +38,6 @@ public class SlidingWindow {
         return lookAheadSize == lookAheadCapacity;
     }
 
-    public int searchSize() {
-        return searchSize;
-    }
-
     public int lookAheadSize() {
         return lookAheadSize;
     }
@@ -56,20 +52,6 @@ public class SlidingWindow {
 
     public int lookAheadStartIndex() {
         return searchSize;
-    }
-
-    public int size() {
-        if (circularList.size() != (searchSize + lookAheadSize)) {
-            throw new IllegalStateException("Circular list's size differs from lookAheadSize + searchSize");
-        }
-        return circularList.size();
-    }
-
-    public int capacity() {
-        if (circularList.capacity() != (searchCapacity + lookAheadCapacity)) {
-            throw new IllegalStateException("Circular list's capacity differs from lookAheadCapacity + searchCapacity");
-        }
-        return circularList.capacity();
     }
 
     public void slide(long slideLength) throws IOException {
@@ -88,7 +70,7 @@ public class SlidingWindow {
         }
         for (int i = 0; i < slideLength; i++) {
             int readByte = 0;
-            if (!streamEnded()) { //stream might end now
+            if (!streamEnded()) {
                 readByte = inputStream.read();
                 if (readByte == -1) {
                     streamEnded = true;
@@ -96,11 +78,11 @@ public class SlidingWindow {
             }
             if (!streamEnded()) {
                 if (searchBufferIsFull()) {
-                    circularList.remove(0); //remove from start
+                    circularList.remove(0);
                 } else {
                     searchSize++;
                 }
-                circularList.add(circularList.size(), readByte); //add to end
+                circularList.add(circularList.size(), readByte);
             } else { //stream ended
                 if (lookAheadSize > 0) {
                     if (searchBufferIsFull()) {
@@ -130,10 +112,10 @@ public class SlidingWindow {
                 }
                 if (newLength > token.getLength()) {
                     token.setLength(newLength);
-                    token.setOffset(searchSize - sbIndex - 1); //indexing SB from right to left
+                    token.setOffset(searchSize - sbIndex - 1);
                     token.setSymbol(get(lookAheadStartIndex() + newLength));
                     if (newLength == lookAheadSize - 1) {
-                        break; //Cease the searching, longest possible sequence was found!
+                        break;
                     }
                 }
             }

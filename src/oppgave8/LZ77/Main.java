@@ -4,9 +4,13 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        File encoderInputFile = new File("C:\\IntelliJ\\testProsjekter\\IDATT2101_Gruppe\\src\\oppgave8\\text.txt");
-        File encoderOutputFile = new File("C:\\IntelliJ\\testProsjekter\\IDATT2101_Gruppe\\src\\oppgave8\\textEncoded.txt");
-        File decoderOutputFile = new File("C:\\IntelliJ\\testProsjekter\\IDATT2101_Gruppe\\src\\oppgave8\\textDecoded.txt");
+        File encoderInputFile = new File("src\\oppgave8\\text.txt");
+        File encoderOutputFile = new File("src\\oppgave8\\textEncoded.txt");
+        File decoderOutputFile = new File("src\\oppgave8\\textDecoded.txt");
+
+        /*File encoderInputFile = new File("src\\oppgave8\\document.lyx");
+        File encoderOutputFile = new File("src\\oppgave8\\documentEncoded.lyx");
+        File decoderOutputFile = new File("src\\oppgave8\\documentDecoded.lyx");*/
         try {
             encoderOutputFile.createNewFile();
             InputStream encoderInputStream = new BufferedInputStream(new FileInputStream(encoderInputFile));

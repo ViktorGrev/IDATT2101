@@ -6,22 +6,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.RandomAccess;
 
-/**
- * If you use this code, please consider notifying isak at du-preez dot com
- * with a brief description of your application.
- * <p>
- * This is free and unencumbered software released into the public domain.
- * Anyone is free to copy, modify, publish, use, compile, sell, or
- * distribute this software, either in source code form or as a compiled
- * binary, for any purpose, commercial or non-commercial, and by any
- * means.
- */
-
 public class CircularArrayList<E>
         extends AbstractList<E> implements RandomAccess {
 
-    private final int n; // buffer length
-    private final List<E> buf; // a List implementing RandomAccess
+    private final int n;
+    private final List<E> buf;
     private int head = 0;
     private int tail = 0;
 
@@ -36,14 +25,12 @@ public class CircularArrayList<E>
 
     private int wrapIndex(int i) {
         int m = i % n;
-        if (m < 0) { // java modulus can be negative
+        if (m < 0) {
             m += n;
         }
         return m;
     }
 
-    // This method is O(n) but will never be called if the
-    // CircularArrayList is used in its typical/intended role.
     private void shiftBlock(int startIndex, int endIndex) {
         assert (endIndex > startIndex);
         for (int i = endIndex - 1; i >= startIndex; i--) {
