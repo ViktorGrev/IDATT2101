@@ -1,4 +1,4 @@
-package oppgave8.LZ77;
+package oppgave8.LZ77Folder;
 
 public class ReadBuffer {
     private byte bits;
