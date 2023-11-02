@@ -119,9 +119,7 @@ public class LZ77 {
         }
     }
 
-    public static class CircularArrayList<E>
-            extends AbstractList<E> implements RandomAccess {
-
+    public static class CircularArrayList<E> extends AbstractList<E> implements RandomAccess {
         private final int n;
         private final List<E> buf;
         private int head = 0;
@@ -158,32 +156,17 @@ public class LZ77 {
 
         @Override
         public E get(int i) {
-            if (i < 0 || i >= size()) {
-                throw new IndexOutOfBoundsException("index:" + i + " capacity:" + capacity() + " size:" + size());
-            }
             return buf.get(wrapIndex(head + i));
         }
 
         @Override
         public E set(int i, E e) {
-            if (i < 0 || i >= size()) {
-                throw new IndexOutOfBoundsException("index:" + i + " capacity:" + capacity() + " size:" + size());
-            }
             return buf.set(wrapIndex(head + i), e);
         }
 
         @Override
         public void add(int i, E e) {
             int s = size();
-            if (s == n - 1) {
-                throw new IllegalStateException(
-                        "CircularArrayList is filled to capacity. "
-                                + "(You may want to remove from front"
-                                + " before adding more to back.)");
-            }
-            if (i < 0 || i > s) {
-                throw new IndexOutOfBoundsException("index:" + i + " capacity:" + capacity() + " size:" + size());
-            }
             tail = wrapIndex(tail + 1);
             if (i < s) {
                 shiftBlock(i, s);
@@ -194,9 +177,6 @@ public class LZ77 {
         @Override
         public E remove(int i) {
             int s = size();
-            if (i < 0 || i >= s) {
-                throw new IndexOutOfBoundsException("index:" + i + " capacity:" + capacity() + " size:" + size());
-            }
             E e = get(i);
             if (i > 0) {
                 shiftBlock(0, i);
@@ -261,9 +241,6 @@ public class LZ77 {
             this.length = length;
             this.offset = offset;
             this.symbol = symbol;
-        }
-
-        public Token() {
         }
 
         public long getLength() {
@@ -333,10 +310,6 @@ public class LZ77 {
             return searchSize == searchCapacity;
         }
 
-        public boolean lookAheadBufferIsFull() {
-            return lookAheadSize == lookAheadCapacity;
-        }
-
         public int lookAheadSize() {
             return lookAheadSize;
         }
@@ -354,19 +327,6 @@ public class LZ77 {
         }
 
         public void slide(long slideLength) throws IOException {
-            if (lookAheadSize == 0 && streamEnded()) {
-                throw new RuntimeException("Stream ended & look ahead is empty");
-            }
-            if (slideLength < 1) {
-                throw new InvalidParameterException("Cannot slide with the length of " + slideLength + " bytes");
-            }
-            if (slideLength > lookAheadSize) {
-                throw new IndexOutOfBoundsException("Cannot slide more than the LookAheadBuffer's size at once. " +
-                        "Analyze those bytes, don't just slide over them, boy!");
-            }
-            if (!lookAheadBufferIsFull() && !streamEnded) {
-                throw new IllegalStateException("Stream didn't end, but LAB is not full.");
-            }
             for (int i = 0; i < slideLength; i++) {
                 int readByte = 0;
                 if (!streamEnded()) {
@@ -390,17 +350,12 @@ public class LZ77 {
                             searchSize++;
                         }
                         lookAheadSize--;
-                    } else {
-                        throw new UnsupportedOperationException("Cannot slide when stream ended & LAB is empty");
                     }
                 }
             }
         }
 
         public Token nextToken() throws IOException {
-            if (lookAheadSize() == 0) {
-                throw new RuntimeException("Cannot build next token. Look ahead is empty.");
-            }
             Token token = new Token(0, 0, get(lookAheadStartIndex()));
             if (lookAheadSize > 1) {
                 for (int sbIndex = searchSize - 1; sbIndex >= 0; sbIndex--) {
@@ -436,25 +391,36 @@ class Main {
         //File encoderInputFile = new File("src\\oppgave8\\document.lyx");
         File encoderOutputFile = new File("src\\oppgave8\\documentEncoded.lyx");
         File decoderOutputFile = new File("src\\oppgave8\\documentDecoded.lyx");
+
+        Scanner input = new Scanner(System.in);
+        System.out.println(""" 
+        1. Compress file
+        2. Decompress file
+        """);
+        int choice = input.nextInt();
+
         try {
-            encoderOutputFile.createNewFile();
-            InputStream encoderInputStream = new BufferedInputStream(connection.getInputStream()); //Read file -> new BufferedInputStream(new FileInputStream(encoderInputFile));
-            final OutputStream encoderOutputStream =
-                    new BufferedOutputStream(new FileOutputStream(encoderOutputFile));
-            LZ77.LZ77Encoder encoder = new LZ77.LZ77Encoder();
-            encoderInputStream = new BufferedInputStream(connection.getInputStream());
-            encoder.encode(13, 5, encoderInputStream, encoderOutputStream);
-            encoderOutputStream.flush();
-            encoderOutputStream.close();
-
-            decoderOutputFile.createNewFile();
-            InputStream decoderInputStream = new BufferedInputStream(new FileInputStream(encoderOutputFile));
-            OutputStream decoderOutputStream = new BufferedOutputStream(new FileOutputStream(decoderOutputFile));
-            LZ77.LZ77Decoder decoder = new LZ77.LZ77Decoder();
-            decoder.decode(decoderInputStream, decoderOutputStream);
-            decoderOutputStream.flush();
-            decoderOutputStream.close();
-
+            if (choice == 1) {
+                encoderOutputFile.createNewFile();
+                InputStream encoderInputStream = new BufferedInputStream(connection.getInputStream()); //Read file -> new BufferedInputStream(new FileInputStream(encoderInputFile));
+                final OutputStream encoderOutputStream =
+                        new BufferedOutputStream(new FileOutputStream(encoderOutputFile));
+                LZ77.LZ77Encoder encoder = new LZ77.LZ77Encoder();
+                encoderInputStream = new BufferedInputStream(connection.getInputStream());
+                encoder.encode(13, 5, encoderInputStream, encoderOutputStream);
+                encoderOutputStream.flush();
+                encoderOutputStream.close();
+            } else if (choice == 2) {
+                decoderOutputFile.createNewFile();
+                InputStream decoderInputStream = new BufferedInputStream(new FileInputStream(encoderOutputFile));
+                OutputStream decoderOutputStream = new BufferedOutputStream(new FileOutputStream(decoderOutputFile));
+                LZ77.LZ77Decoder decoder = new LZ77.LZ77Decoder();
+                decoder.decode(decoderInputStream, decoderOutputStream);
+                decoderOutputStream.flush();
+                decoderOutputStream.close();
+            } else {
+                throw new InvalidParameterException("Invalid choice");
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
